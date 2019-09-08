@@ -34,7 +34,7 @@ public class Chaiser_Home extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        user = new javax.swing.JLabel();
+        user_logout = new javax.swing.JLabel();
         viewItem = new javax.swing.JLabel();
         create_voucher = new javax.swing.JLabel();
 
@@ -46,14 +46,14 @@ public class Chaiser_Home extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(97, 35, 78));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        user.setFont(new java.awt.Font("Tamil MN", 1, 14)); // NOI18N
-        user.setForeground(new java.awt.Color(255, 255, 255));
-        user.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        user.setText("LogOut");
-        user.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        user.addMouseListener(new java.awt.event.MouseAdapter() {
+        user_logout.setFont(new java.awt.Font("Tamil MN", 1, 14)); // NOI18N
+        user_logout.setForeground(new java.awt.Color(255, 255, 255));
+        user_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        user_logout.setText("LogOut");
+        user_logout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        user_logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userMouseClicked(evt);
+                user_logoutMouseClicked(evt);
             }
         });
 
@@ -63,14 +63,14 @@ public class Chaiser_Home extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(430, Short.MAX_VALUE)
-                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -104,12 +104,9 @@ public class Chaiser_Home extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(viewItem, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(create_voucher, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 334, Short.MAX_VALUE))))
+                    .addComponent(viewItem, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(create_voucher, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,10 +133,14 @@ public class Chaiser_Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseClicked
+    private void user_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_logoutMouseClicked
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_userMouseClicked
+        Login_Form lf = new Login_Form();
+            lf.setVisible(true);
+            lf.pack();
+            lf.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            this.dispose();
+    }//GEN-LAST:event_user_logoutMouseClicked
 
     private void viewItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewItemMouseClicked
         // TODO add your handling code here:
@@ -175,7 +176,7 @@ public class Chaiser_Home extends javax.swing.JFrame {
     private javax.swing.JLabel create_voucher;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel user;
+    private javax.swing.JLabel user_logout;
     private javax.swing.JLabel viewItem;
     // End of variables declaration//GEN-END:variables
 }

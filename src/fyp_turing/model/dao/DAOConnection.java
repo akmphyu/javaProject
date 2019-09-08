@@ -142,10 +142,18 @@ public class DAOConnection {
             Logger.getLogger(DAOConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-   public void updateQuantity(Integer stock,Integer quantity, String itemName){
+   public Integer updateQuantity(Integer stock,Integer quantity, String itemName, boolean Increase){
+      Integer remain = 0;
        try{
             PreparedStatement st = this.conn.prepareStatement("UPDATE `item` SET `stock`=? WHERE `name`=?");
-            Integer remain = stock - quantity;
+            
+            
+            if(Increase){
+                remain  = stock + quantity;
+            }else{
+                remain = stock - quantity;
+            }
+                   
             st.setInt(1,remain);
             st.setString(2, itemName);
             if(st.executeUpdate() != 0){
@@ -156,6 +164,7 @@ public class DAOConnection {
         }catch(SQLException ex){
             Logger.getLogger(DAOConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
+       return remain;
    }
    public void updateCategory(Category category, String newName){
        try{
@@ -251,7 +260,27 @@ public class DAOConnection {
             Logger.getLogger(DAOConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
- 
+    
+    public Integer getItemStock(String itemName){
+        Integer stock = 0;
+        try{
+            PreparedStatement st;
+            ResultSet res;
+            String query = "SELECT * FROM `item` WHERE `name` = ?"; 
+            st = this.conn.prepareStatement(query);
+            st.setString(1, itemName);
+            res = st.executeQuery();
+            while(res.next()){
+               stock = res.getInt("stock");
+               
+            }
+            res.close();
+            st.close();
+        }catch(SQLException ex){
+            Logger.getLogger(DAOConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return stock;
+    }
     public ArrayList<Item> getItem(String category){
         ArrayList<Item> items = new ArrayList<Item>();
         try{
@@ -402,12 +431,8 @@ public class DAOConnection {
           st.setFloat(3, voucher.getItemPrice());
           st.setInt(4, voucher.getItemQuantity());
           st.setFloat(5,voucher.getTotalCost());
+          st.executeUpdate();
           
-          if(st.executeUpdate() != 0){
-                            JOptionPane.showMessageDialog(null, "Voucher has been created");
-                        }else{
-                            JOptionPane.showMessageDialog(null, "There are some error. Please try again later");
-                        }
       }catch(SQLException ex){
           Logger.getLogger(DAOConnection.class.getName()).log(Level.SEVERE, null, ex);
       }

@@ -31,6 +31,8 @@ public class Voucher_Form extends javax.swing.JFrame {
     Integer input;
     Integer stock;
     String itemName = "";
+    String cancelItem = "";
+    Integer cancelQuantity;
     Float itemPrice;
     boolean isClicked = false;
     String cat;
@@ -38,8 +40,7 @@ public class Voucher_Form extends javax.swing.JFrame {
     Date date = new Date();
     String todayDate = String.valueOf(txtDate.format(date));
     ArrayList<Voucher> voucherList = new ArrayList<Voucher>();
-//    Date currentDate = new Date();
-//     String txtDate = new SimpleDateFormat("dd/MM/yyyy").format(currentDate);
+
     public Voucher_Form() {
         initComponents();
         
@@ -71,8 +72,6 @@ public class Voucher_Form extends javax.swing.JFrame {
         jPopupMenu3 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel_min = new javax.swing.JLabel();
-        jLabel_close = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_item = new javax.swing.JTable();
         jButton_insertItem = new javax.swing.JButton();
@@ -80,13 +79,14 @@ public class Voucher_Form extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel_total = new javax.swing.JLabel();
         jLabel_date = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable_selectedItems = new javax.swing.JTable();
         jButton_create = new javax.swing.JButton();
         jComboBox_cat = new javax.swing.JComboBox<>();
+        jButton_cancelItem = new javax.swing.JButton();
 
         jMenu3.setText("jMenu3");
 
@@ -102,38 +102,6 @@ public class Voucher_Form extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Create Voucher");
-
-        jLabel_min.setFont(new java.awt.Font("Tamil MN", 1, 36)); // NOI18N
-        jLabel_min.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_min.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_min.setText("-");
-        jLabel_min.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_minMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel_minMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel_minMouseEntered(evt);
-            }
-        });
-
-        jLabel_close.setFont(new java.awt.Font("Tamil MN", 1, 18)); // NOI18N
-        jLabel_close.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_close.setText("x");
-        jLabel_close.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_closeMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel_closeMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel_closeMouseEntered(evt);
-            }
-        });
 
         jTable_item.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -168,10 +136,10 @@ public class Voucher_Form extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Tamil MN", 1, 18)); // NOI18N
-        jLabel6.setText("Total:");
+        jLabel6.setText("Total:         $");
 
-        jLabel7.setFont(new java.awt.Font("Tamil MN", 0, 18)); // NOI18N
-        jLabel7.setText("$--");
+        jLabel_total.setFont(new java.awt.Font("Tamil MN", 0, 18)); // NOI18N
+        jLabel_total.setText("--");
 
         jLabel_date.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel_date.setText("01/01/2019");
@@ -229,7 +197,7 @@ public class Voucher_Form extends javax.swing.JFrame {
                                 .addGap(73, 73, 73)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabel_total, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -249,7 +217,7 @@ public class Voucher_Form extends javax.swing.JFrame {
                     .addComponent(jButton_create, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7))))
+                        .addComponent(jLabel_total))))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -277,6 +245,14 @@ public class Voucher_Form extends javax.swing.JFrame {
             }
         });
 
+        jButton_cancelItem.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton_cancelItem.setText("<<");
+        jButton_cancelItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_cancelItemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -292,38 +268,29 @@ public class Voucher_Form extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton_insertItem)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_insertItem)
+                            .addComponent(jButton_cancelItem))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 18, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(297, 297, 297)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel_min, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_close, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jLabel1)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel_min, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel_close, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(11, 11, 11))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(175, 175, 175)
-                                .addComponent(jButton_insertItem))
+                                .addComponent(jButton_insertItem)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton_cancelItem))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -332,7 +299,7 @@ public class Voucher_Form extends javax.swing.JFrame {
                         .addComponent(jComboBox_cat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -349,36 +316,6 @@ public class Voucher_Form extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel_minMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_minMouseClicked
-        // TODO add your handling code here:
-        this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_jLabel_minMouseClicked
-
-    private void jLabel_minMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_minMouseExited
-        // TODO add your handling code here:
-        jLabel_min.setForeground(Color.white);
-    }//GEN-LAST:event_jLabel_minMouseExited
-
-    private void jLabel_minMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_minMouseEntered
-        // TODO add your handling code here:
-        jLabel_min.setForeground(new Color(255,214,146));
-    }//GEN-LAST:event_jLabel_minMouseEntered
-
-    private void jLabel_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_closeMouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jLabel_closeMouseClicked
-
-    private void jLabel_closeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_closeMouseExited
-        // TODO add your handling code here:
-        jLabel_min.setForeground(Color.white);
-    }//GEN-LAST:event_jLabel_closeMouseExited
-
-    private void jLabel_closeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_closeMouseEntered
-        // TODO add your handling code here:
-        jLabel_close.setForeground(new Color(255,214,146));
-    }//GEN-LAST:event_jLabel_closeMouseEntered
-
     private void jButton_insertItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_insertItemActionPerformed
         // TODO add your handling code here:
         if(isClicked){
@@ -386,9 +323,11 @@ public class Voucher_Form extends javax.swing.JFrame {
             if(input > 0 && stock>= input){
                 
                 populateSelectItems();
+                
             }else{
                 System.out.println("Enter qauntity: ");
             }
+            isClicked = false;
         }else{
             JOptionPane.showMessageDialog(null, "Please select item first.");
         }
@@ -408,7 +347,11 @@ public class Voucher_Form extends javax.swing.JFrame {
 
     private void jTable_selectedItemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_selectedItemsMouseClicked
         // TODO add your handling code here:
-        
+        int selectedRow = jTable_selectedItems.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable_selectedItems.getModel();
+        cancelItem = model.getValueAt(selectedRow, 0).toString();
+       cancelQuantity = Integer.parseInt(model.getValueAt(selectedRow, 2).toString());
+       isClicked = true;
     }//GEN-LAST:event_jTable_selectedItemsMouseClicked
 
     private void jButton_createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_createActionPerformed
@@ -433,6 +376,26 @@ public class Voucher_Form extends javax.swing.JFrame {
         cat = jComboBox_cat.getSelectedItem().toString();
         populateItems(cat);
     }//GEN-LAST:event_jComboBox_catActionPerformed
+
+    private void jButton_cancelItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cancelItemActionPerformed
+        // TODO add your handling code here:
+        if(isClicked){
+            Integer Orginalstock= DAOConnection.getDao().getItemStock(cancelItem);
+            DAOConnection.getDao().updateQuantity(Orginalstock, cancelQuantity, cancelItem,true);
+        populateItems(cat);
+        DefaultTableModel model = (DefaultTableModel) jTable_selectedItems.getModel();
+        isClicked = false;
+        try{
+            int SelectedRowIndex = jTable_selectedItems.getSelectedRow();
+            model.removeRow(SelectedRowIndex);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select item first.");
+        }
+        
+    }//GEN-LAST:event_jButton_cancelItemActionPerformed
     public void populateItems(String category){
        
         
@@ -454,19 +417,22 @@ public class Voucher_Form extends javax.swing.JFrame {
     public void populateSelectItems(){
         DefaultTableModel model = (DefaultTableModel) jTable_selectedItems.getModel();
         Object rowData[] = new Object[4];
-        
+            
             rowData[0] = itemName;
             rowData[1] = itemPrice;
             rowData[2] = input;
             rowData[3] = itemPrice * input;
             model.addRow(rowData);
-        
+
         if(stock >= input){
-            DAOConnection.getDao().updateQuantity(stock, input, itemName);
+            DAOConnection.getDao().updateQuantity(stock, input, itemName,false);
         }else{
             JOptionPane.showMessageDialog(null, "Not enough stock");
         }
         populateItems(cat);
+//        total += itemPrice * input;
+//       jLabel_total.setText(total.toString());
+        
     }
     /**
      * @param args the command line arguments
@@ -482,16 +448,15 @@ public class Voucher_Form extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_cancelItem;
     private javax.swing.JButton jButton_create;
     private javax.swing.JButton jButton_insertItem;
     private javax.swing.JComboBox<String> jComboBox_cat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel_close;
     private javax.swing.JLabel jLabel_date;
-    private javax.swing.JLabel jLabel_min;
+    private javax.swing.JLabel jLabel_total;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;

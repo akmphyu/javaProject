@@ -40,7 +40,7 @@ public class Admin_Home extends javax.swing.JFrame {
         jPopupMenu3 = new javax.swing.JPopupMenu();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        user3 = new javax.swing.JLabel();
+        user_logout = new javax.swing.JLabel();
         daily_report = new javax.swing.JLabel();
         create_item = new javax.swing.JLabel();
         view_items = new javax.swing.JLabel();
@@ -61,14 +61,14 @@ public class Admin_Home extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(97, 35, 78));
         jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        user3.setFont(new java.awt.Font("Tamil MN", 1, 14)); // NOI18N
-        user3.setForeground(new java.awt.Color(255, 255, 255));
-        user3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        user3.setText("LogOut");
-        user3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        user3.addMouseListener(new java.awt.event.MouseAdapter() {
+        user_logout.setFont(new java.awt.Font("Tamil MN", 1, 14)); // NOI18N
+        user_logout.setForeground(new java.awt.Color(255, 255, 255));
+        user_logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        user_logout.setText("LogOut");
+        user_logout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        user_logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                user3MouseClicked(evt);
+                user_logoutMouseClicked(evt);
             }
         });
 
@@ -78,14 +78,14 @@ public class Admin_Home extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(user3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(user3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -192,10 +192,14 @@ public class Admin_Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void user3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user3MouseClicked
+    private void user_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_logoutMouseClicked
         // TODO add your handling code here:
-
-    }//GEN-LAST:event_user3MouseClicked
+        Login_Form lf = new Login_Form();
+            lf.setVisible(true);
+            lf.pack();
+            lf.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            this.dispose();
+    }//GEN-LAST:event_user_logoutMouseClicked
 
     private void daily_reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daily_reportMouseClicked
         // TODO add your handling code here:
@@ -266,7 +270,7 @@ public class Admin_Home extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JLabel monthly_report;
-    private javax.swing.JLabel user3;
+    private javax.swing.JLabel user_logout;
     private javax.swing.JLabel view_items;
     // End of variables declaration//GEN-END:variables
 }
